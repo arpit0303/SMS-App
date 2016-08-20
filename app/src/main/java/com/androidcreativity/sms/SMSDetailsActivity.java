@@ -29,7 +29,7 @@ public class SMSDetailsActivity extends AppCompatActivity implements View.OnClic
     Cursor cursor;
     List<String> smsDetailBody, smsDetailTime, smsDetailType;
 
-    String mSMSAddress;
+    String mSMSAddress = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,8 @@ public class SMSDetailsActivity extends AppCompatActivity implements View.OnClic
 
         if (cursor.moveToFirst()) { // must check the result to prevent exception
             do {
-                if (cursor.getString(cursor.getColumnIndexOrThrow("address")).equals(mSMSAddress)) {
+                String mAddress = cursor.getString(cursor.getColumnIndexOrThrow("address"));
+                if (mAddress.equals(mSMSAddress)) {
                     smsDetailBody.add(cursor.getString(cursor.getColumnIndexOrThrow("body")));
                     smsDetailType.add(cursor.getString(cursor.getColumnIndexOrThrow("type")));
 
